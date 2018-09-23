@@ -1,5 +1,4 @@
 ---
-layout: naked
 title: Styles
 ---
 
