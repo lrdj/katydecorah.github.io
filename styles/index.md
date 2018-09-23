@@ -1,5 +1,7 @@
 ---
+layout: default
 title: Styles
+hideTitle: true
 ---
 
 # Header Level 1
