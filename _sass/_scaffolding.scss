@@ -71,67 +71,6 @@ img {
   padding: 0.25em;
 }
 
-.img-half {
-  @include breakpoint(medium) {
-    width: 49.6%;
-  }
-}
-
-.img-thirds {
-  @include breakpoint(medium) {
-    width: 32.89%;
-  }
-}
-
-.thirds {
-  float: left;
-  margin-bottom: 1em;
-
-  @include breakpoint(medium) {
-    width: 31.8%;
-  }
-}
-
-.img-fourths {
-  @include breakpoint(medium) {
-    width: 24.5%;
-  }
-}
-
-.post {
-  video + video {
-    @include breakpoint(medium) {
-      margin-left: 0.65%;
-    }
-  }
-}
-
-.img-split-wide,
-.img-wide {
-  @include breakpoint(medium) {
-    width: 62.7%;
-  }
-}
-
-.img-split-tall,
-.img-tall {
-  @include breakpoint(medium) {
-    width: 35.25%;
-  }
-}
-
 .rotate-left {
   transform: rotate(-90deg);
-}
-
-.img-half,
-.img-thirds,
-.img-fourths,
-.img-split-wide,
-.img-wide,
-.img-split-tall,
-.img-tall {
-  @include breakpoint(medium) {
-    //display: inline-block;
-  }
 }

@@ -22,8 +22,6 @@
 .review-thumbs,
 .everything-thumbs,
 .topnine-thumbs {
-  @extend %clearfix;
-
   height: 100%;
   width: 100%;
 }

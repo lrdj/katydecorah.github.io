@@ -11,8 +11,6 @@
 }
 
 .archive-month {
-  @extend %clearfix;
-
   @include breakpoint(medium) {
     align-items: center;
     display: flex;
