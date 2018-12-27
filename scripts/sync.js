@@ -28,9 +28,13 @@ const resize = (file, size, quality) => {
 
 const towebp = (file, size) => {
   const ext = path.extname(file);
-  const outputFile = file.replace(ext, `@${size}.webp`);
+  const outputFile = file.replace(ext, `@${size || null}.webp`);
   const buffer = fs.readFileSync(file);
   return sharp(buffer)
-    .resize(size)
+    .resize(size || null)
     .toFile(outputFile);
 };
+
+towebp('./img/2018-12-26-kransekake-0.jpg', null)
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
