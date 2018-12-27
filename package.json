@@ -47,6 +47,7 @@
     ]
   },
   "dependencies": {
+    "image-size": "^0.6.3",
     "jimp": "^0.6.0",
     "sharp": "^0.21.1"
   }

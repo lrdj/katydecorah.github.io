@@ -8,17 +8,20 @@ const sharp = require('sharp');
 const Jimp = require('jimp');
 const path = require('path');
 const fs = require('fs');
+const sizeOf = require('image-size');
 
 const folder = './img/staging/';
-const sizes = [1000, 1600, null];
+const sizes = [null, 1000, 1600];
 
 const resize = (file, size, quality) => {
   const ext = path.extname(file);
-  const outputFile = file.replace(ext, `@${size}${ext}`);
+  const outputFile = file.replace(ext, `${size ? `@${size}` : ''}${ext}`);
+  const dimensions = sizeOf(file);
+
   return Jimp.read(file)
     .then(lenna => {
       return lenna
-        .resize(size || Jimp.AUTO, Jimp.AUTO)
+        .resize(size || dimensions.width, Jimp.AUTO)
         .quality(quality)
         .write(outputFile);
     })
@@ -29,7 +32,7 @@ const resize = (file, size, quality) => {
 
 const towebp = (file, size) => {
   const ext = path.extname(file);
-  const outputFile = file.replace(ext, `@${size || ''}.webp`);
+  const outputFile = file.replace(ext, `${size ? `@${size}` : ''}.webp`);
   const buffer = fs.readFileSync(file);
   return sharp(buffer)
     .resize(size || null)
@@ -43,8 +46,8 @@ fs.readdirSync(folder).forEach(file => {
       .then(res => console.log(res))
       .catch(err => console.log(err));
 
-    towebp(file, size)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    //    towebp(file, size)
+    //      .then(res => console.log(res))
+    //      .catch(err => console.log(err));
   });
 });
