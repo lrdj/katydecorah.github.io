@@ -9,7 +9,8 @@ const Jimp = require('jimp');
 const path = require('path');
 const fs = require('fs');
 
-const sizes = [1000, 1600];
+const folder = './img/staging/';
+const sizes = [1000, 1600, null];
 
 const resize = (file, size, quality) => {
   const ext = path.extname(file);
@@ -28,13 +29,22 @@ const resize = (file, size, quality) => {
 
 const towebp = (file, size) => {
   const ext = path.extname(file);
-  const outputFile = file.replace(ext, `@${size || null}.webp`);
+  const outputFile = file.replace(ext, `@${size || ''}.webp`);
   const buffer = fs.readFileSync(file);
   return sharp(buffer)
     .resize(size || null)
     .toFile(outputFile);
 };
 
-towebp('./img/2018-12-26-kransekake-0.jpg', null)
-  .then(res => console.log(res))
-  .catch(err => console.log(err));
+fs.readdirSync(folder).forEach(file => {
+  file = `${folder}${file}`;
+  sizes.forEach(size => {
+    resize(file, size, 80)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+
+    towebp(file, size)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  });
+});
